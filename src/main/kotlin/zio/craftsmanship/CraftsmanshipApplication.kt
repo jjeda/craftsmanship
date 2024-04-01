@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class CraftsmanshipApplication
 
 fun main(args: Array<String>) {
-    runApplication<CraftsmanshipApplication>(*args)
+  runApplication<CraftsmanshipApplication>(*args)
 }
