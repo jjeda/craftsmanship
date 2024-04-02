@@ -1,15 +1,17 @@
 package zio.craftsmanship.compile.usecase
 
 import org.springframework.stereotype.Service
-import zio.craftsmanship.compile.domain.JavaArchiveFile
-import zio.craftsmanship.compile.domain.JavaVirtualMachine
+import zio.craftsmanship.compile.domain.*
 
 @Service
 class ExecuteJavaArchive {
+  private val jvm = JavaDevelopmentKit.jre.jvm
+  private val buildTool: BuildTool = Gradle
 
-  fun execute(command: Command) {
-    JavaVirtualMachine.execute(command.javaArchiveFile)
+  fun execute(command: Command) = with(buildTool.packaging()) {
+    jvm.executeJarWithKotlinRuntime(command.javaArchiveFile, kotlinRuntime, kotlinStandardLibrary)
   }
+
   data class Command(
     val javaArchiveFile: JavaArchiveFile
   )

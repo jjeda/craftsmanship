@@ -1,6 +1,12 @@
 package zio.craftsmanship.compile.domain
 
-object KotlinCompiler {
+object KotlinPackage {
+  val kotlinCompiler = KotlinCompiler()
+  val kotlinRuntime = KotlinRuntime()
+  val kotlinStandardLibrary = KotlinStandardLibrary()
+}
+
+class KotlinCompiler {
   fun compileIntoByteCode(sourceCode: SourceCode): ByteCode {
     analysisSyntax(sourceCode)
     checkType(sourceCode)
@@ -25,3 +31,7 @@ object KotlinCompiler {
     return ByteCode(intermediateRepresentationCode.codeByAbstractSyntaxTree)
   }
 }
+
+class KotlinRuntime
+
+class KotlinStandardLibrary
