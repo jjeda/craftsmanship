@@ -2,6 +2,7 @@ package zio.craftsmanship.compile.usecase
 
 import org.springframework.stereotype.Service
 import zio.craftsmanship.compile.domain.*
+import zio.craftsmanship.jvm.domain.JavaDevelopmentKit
 
 @Service
 class ExecuteJavaArchive {
