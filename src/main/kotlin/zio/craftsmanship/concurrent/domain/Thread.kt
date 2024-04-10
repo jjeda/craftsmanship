@@ -48,7 +48,7 @@ open class Thread(): Runnable {
       // TODO: wait()
     }
 
-    currentThread.toRunnableState()
+    currentThread.wakeUp()
   }
 
   fun sleep(millis: Long) {
@@ -73,18 +73,18 @@ open class Thread(): Runnable {
     JavaNativeInterface.yield()
   }
 
-  private fun isAlive(): Boolean {
-    return state != State.TERMINATED
+  fun wakeUp() {
+    check(state == State.BLOCKED)
+    state = State.RUNNABLE
   }
 
-  private fun toBlockedState() {
+  fun toBlockedState() {
     check(state == State.RUNNABLE)
     state = State.BLOCKED
   }
 
-  private fun toRunnableState() {
-    check(state == State.BLOCKED)
-    state = State.RUNNABLE
+  private fun isAlive(): Boolean {
+    return state != State.TERMINATED
   }
 
   enum class State {
