@@ -10,3 +10,7 @@
 ## Concurrent
 - concurrent with thread pool (executorService)
 - daemon thread
+- Java Memory Model(JMM)
+- Lock(interface)
+  - ReentrantLock
+- Latch, Barrier

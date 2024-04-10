@@ -19,7 +19,7 @@ class SharedObject {
   fun wait() {
     val currentThread = JavaNativeInterface.currentThread()
     check(monitor.ownerThread == currentThread)
-    currentThread.toBlockedState()
+    currentThread.toWaitingState()
 
     monitor.waitingThreads.add(currentThread)
   }
@@ -42,6 +42,7 @@ class Monitor {
 
     while (locked || currentThread != waitingThreads.firstOrNull()) {
       if (waitingThreads.contains(currentThread).not()) {
+        currentThread.toBlockedState()
         waitingThreads.add(currentThread)
       }
     }

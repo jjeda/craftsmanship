@@ -40,7 +40,7 @@ open class Thread(): Runnable {
 
   fun join() {
     val currentThread = JavaNativeInterface.currentThread()
-    currentThread.toBlockedState()
+    currentThread.toWaitingState()
     JvmThreadScheduler.addWaitQueue(currentThread)
 
     // Wait for the target thread to terminate
@@ -74,8 +74,13 @@ open class Thread(): Runnable {
   }
 
   fun wakeUp() {
-    check(state == State.BLOCKED)
+    check(state == State.WAITING)
     state = State.RUNNABLE
+  }
+
+  fun toWaitingState() {
+    check(state == State.RUNNABLE)
+    state = State.WAITING
   }
 
   fun toBlockedState() {
