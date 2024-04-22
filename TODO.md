@@ -14,3 +14,10 @@
 - Lock(interface)
   - ReentrantLock
 - Latch, Barrier
+
+## HTTP
+- HTTP 2.0 stream
+- QUIC
+
+## Spring
+- HandlerMapping, HandlerAdapter with Application Context
